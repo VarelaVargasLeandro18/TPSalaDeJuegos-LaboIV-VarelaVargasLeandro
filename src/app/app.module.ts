@@ -11,6 +11,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SessionFormComponent } from './components/session-form/session-form.component';
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { JuegoComponent } from './components/juego/juego.component';
+import { JuegoPreviewComponent } from './components/juego-preview/juego-preview.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { JuegoComponent } from './components/juego/juego.component';
     SignupComponent,
     SessionFormComponent,
     JuegosComponent,
-    JuegoComponent
+    JuegoComponent,
+    JuegoPreviewComponent
   ],
   imports: [
     BrowserModule,
