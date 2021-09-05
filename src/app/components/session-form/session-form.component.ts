@@ -13,6 +13,18 @@ export class SessionFormComponent implements OnInit {
   @Input()
   button_title: string = "";
 
+  @Input()
+  user_label: string = "";
+
+  @Input()
+  user_placeholder: string = "";
+
+  @Input()
+  password_label: string = "";
+
+  @Input()
+  password_placeholder : string = "";
+
   constructor() { }
 
   ngOnInit(): void {

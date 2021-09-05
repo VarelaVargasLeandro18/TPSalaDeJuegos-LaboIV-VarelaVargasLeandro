@@ -1,29 +1,25 @@
-<div class="container">
-
-    <div class="row justify-content-center">
-
-        <form class="col col-12 col-md-8 col-xl-6 py-2 bg-light border text-center">
-
-            <h2 class="text-uppercase">{{title}}</h2>
-
-            <div class="row py-2">
-                <label for="user">
-                    <i class="far fa-user mx-2"></i>
-                    <input type="text" name="user" id="user" placeholder="Usuario">
-                </label>
-            </div>
-
-            <div class="row py-2">
-                <label for="password">
-                    <i class="fas fa-user-lock mx-2"></i>
-                    <input type="password" name="password" id="password" placeholder="Contraseña">
-                </label>
-            </div>
-
-            <button class="py-2 my-2 btn btn-primary">{{button_title}}</button>
-
+<div class="text-center text-white">
+    <main class="form-signin bg-dark border border-5 border-success rounded">
+        <form>
+          <img class="mb-4" src="" alt="" width="72" height="57" alt="insertar SVG">
+          <h1 class="h3 mb-3 fw-normal">{{title}}</h1>
+    
+          <div class="form-floating text-dark">
+            <input type="email" class="form-control" id="floatingInput" placeholder={{user_placeholder}}>
+            <label for="floatingInput">{{user_label}}</label>
+          </div>
+          <div class="form-floating text-dark">
+            <input type="password" class="form-control" id="floatingPassword" placeholder={{password_placeholder}}>
+            <label for="floatingPassword">{{password_label}}</label>
+          </div>
+    
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Recuérdame
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">{{button_title}}</button>
+          <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
         </form>
-
-    </div>
-
+      </main>
 </div>

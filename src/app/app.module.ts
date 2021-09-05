@@ -12,6 +12,7 @@ import { SessionFormComponent } from './components/session-form/session-form.com
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { JuegoComponent } from './components/juego/juego.component';
 import { JuegoPreviewComponent } from './components/juego-preview/juego-preview.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { JuegoPreviewComponent } from './components/juego-preview/juego-preview.
     SessionFormComponent,
     JuegosComponent,
     JuegoComponent,
-    JuegoPreviewComponent
+    JuegoPreviewComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
