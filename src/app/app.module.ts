@@ -8,12 +8,12 @@ import { HomeComponent } from './components/home/home.component';
 import { WhoAmIComponent } from './components/who-am-i/who-am-i.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { SessionFormComponent } from './components/session-form/session-form.component';
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { JuegoComponent } from './components/juego/juego.component';
 import { JuegoPreviewComponent } from './components/juego-preview/juego-preview.component';
 import { ErrorComponent } from './components/error/error.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +22,6 @@ import { ErrorComponent } from './components/error/error.component';
     WhoAmIComponent,
     NavigationComponent,
     SignupComponent,
-    SessionFormComponent,
     JuegosComponent,
     JuegoComponent,
     JuegoPreviewComponent,
@@ -30,7 +29,9 @@ import { ErrorComponent } from './components/error/error.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

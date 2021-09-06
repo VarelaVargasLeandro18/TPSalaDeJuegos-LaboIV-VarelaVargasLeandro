@@ -1,8 +1,30 @@
-<app-session-form 
-    title="Creacion de Cuenta" 
-    button_title="Crear Cuenta"
-    user_label="Nombre de Usuario"
-    password_label="Contrasenia"
-    user_placeholder="noTengoCerebro"
-    password_placeholder="exploto123">
-</app-session-form>
+<div class="text-center text-white">
+  <main class="form-signin bg-dark">
+      <form [formGroup] = "crearCuentaForm" >
+        <i class="far fa-user"></i>
+        <h1 class="h3 mb-3 fw-normal">{{title}}</h1>
+  
+        <div class="form-floating text-dark">
+          <input formControlName="usuario" type="email" class="form-control" id="floatingInput" placeholder="usuario123">
+          <label for="floatingInput">Nombre de Usuario</label>
+          <small
+              [hidden]= "crearCuentaForm.controls['usuario'].valid"
+              class="form-text text-danger text-uppercase">
+              Ingrese al menos 5 caracteres.
+          </small>
+        </div>
+        <div class="form-floating text-dark">
+          <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="pass123">
+          <label for="floatingPassword">Contrasenia</label>
+          <small
+              [hidden]= "crearCuentaForm.controls['password'].valid"
+              class="form-text text-danger text-uppercase">
+              Ingrese al menos 5 caracteres.
+          </small>
+        </div>
+        
+        <button class="w-100 btn btn-lg btn-primary" type="submit">{{button_title}}</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+      </form>
+  </main>
+</div>

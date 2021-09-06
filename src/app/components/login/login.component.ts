@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,12 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  title : String = "Inicio de Sesión";
-  button_title : String = "Iniciar Sesión"
+  title: string = "Inicie Sesion";
 
-  constructor() { }
+  button_title: string = "Iniciar Sesion";
+
+  loginCuentaForm! : FormGroup;
+  
+  constructor(
+    router : Router
+  ) { }
 
   ngOnInit(): void {
+
+    this.loginCuentaForm = new FormGroup({
+      usuario: new FormControl(
+        '',
+        [Validators.required, Validators.maxLength(15), Validators.minLength(5)]
+      ),
+      password: new FormControl(
+        '',
+        [Validators.required, Validators.maxLength(10), Validators.minLength(5)]
+      )
+    });
+
   }
+
 
 }
