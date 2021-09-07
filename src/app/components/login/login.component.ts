@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.loginCuentaForm = new FormGroup({
       usuario: new FormControl(
         '',
-        [Validators.required, Validators.maxLength(15), Validators.minLength(5)]
+        [Validators.required, Validators.email]
       ),
       password: new FormControl(
         '',

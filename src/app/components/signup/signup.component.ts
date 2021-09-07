@@ -24,11 +24,19 @@ export class SignupComponent implements OnInit {
     this.crearCuentaForm = new FormGroup({
       usuario: new FormControl(
         '',
-        [Validators.required, Validators.maxLength(15), Validators.minLength(5)]
+        [Validators.required, Validators.email]
       ),
       password: new FormControl(
         '',
         [Validators.required, Validators.maxLength(10), Validators.minLength(5)]
+      ),
+      nombre: new FormControl(
+        '',
+        [Validators.required]
+      ),
+      apellido: new FormControl(
+        '',
+        [Validators.required]
       )
     });
 

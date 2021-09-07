@@ -10,7 +10,7 @@
           <small
               [hidden]= "crearCuentaForm.controls['usuario'].valid"
               class="form-text text-danger text-uppercase">
-              Ingrese al menos 5 caracteres.
+              Ingrese una direccion de email valida.
           </small>
         </div>
         <div class="form-floating text-dark">
@@ -22,8 +22,26 @@
               Ingrese al menos 5 caracteres.
           </small>
         </div>
-        
-        <button class="w-100 btn btn-lg btn-primary" type="submit">{{button_title}}</button>
+        <div class="form-floating text-dark">
+          <input formControlName="nombre" type="text" class="form-control" id="floatingInput" placeholder="usuario123">
+          <label for="floatingInput">Nombre</label>
+          <small
+              [hidden]= "!crearCuentaForm.controls['nombre'].errors?.required"
+              class="form-text text-danger text-uppercase">
+              Este es un campo obligatorio.
+          </small>
+        </div>
+        <div class="form-floating text-dark">
+          <input formControlName="apellido" type="text" class="form-control" id="floatingInput" placeholder="usuario123">
+          <label for="floatingInput">Apellido</label>
+          <small
+              [hidden]= "!crearCuentaForm.controls['apellido'].errors?.required"
+              class="form-text text-danger text-uppercase">
+              Este es un campo obligatorio.
+          </small>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-success" type="submit">{{button_title}}</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
       </form>
   </main>
