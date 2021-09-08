@@ -1,12 +1,12 @@
 <div class="text-center text-white">
   <main class="form-signin bg-dark">
-      <form [formGroup] = "crearCuentaForm" >
+      <form [formGroup] = "crearCuentaForm" (ngSubmit)=onSubmit()>
         <i class="far fa-user"></i>
         <h1 class="h3 mb-3 fw-normal">{{title}}</h1>
   
         <div class="form-floating text-dark">
-          <input formControlName="usuario" type="email" class="form-control" id="floatingInput" placeholder="usuario123">
-          <label for="floatingInput">Nombre de Usuario</label>
+          <input formControlName="usuario" type="email" class="form-control" placeholder="usuario123">
+          <label for="floatingInput">Email</label>
           <small
               [hidden]= "crearCuentaForm.controls['usuario'].valid"
               class="form-text text-danger text-uppercase">
@@ -14,7 +14,7 @@
           </small>
         </div>
         <div class="form-floating text-dark">
-          <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="pass123">
+          <input formControlName="password" type="password" class="form-control" placeholder="pass123">
           <label for="floatingPassword">Contrasenia</label>
           <small
               [hidden]= "crearCuentaForm.controls['password'].valid"
@@ -23,7 +23,7 @@
           </small>
         </div>
         <div class="form-floating text-dark">
-          <input formControlName="nombre" type="text" class="form-control" id="floatingInput" placeholder="usuario123">
+          <input formControlName="nombre" type="text" class="form-control" placeholder="usuario123">
           <label for="floatingInput">Nombre</label>
           <small
               [hidden]= "!crearCuentaForm.controls['nombre'].errors?.required"
@@ -32,7 +32,7 @@
           </small>
         </div>
         <div class="form-floating text-dark">
-          <input formControlName="apellido" type="text" class="form-control" id="floatingInput" placeholder="usuario123">
+          <input formControlName="apellido" type="text" class="form-control" placeholder="usuario123">
           <label for="floatingInput">Apellido</label>
           <small
               [hidden]= "!crearCuentaForm.controls['apellido'].errors?.required"
@@ -41,7 +41,11 @@
           </small>
         </div>
 
-        <button class="w-100 btn btn-lg btn-success" type="submit">{{button_title}}</button>
+        <button [disabled]="disableButton || !crearCuentaForm.valid" class="w-100 btn btn-lg btn-success" type="submit">{{button_title}}</button>
+        <small
+              class="form-text text-danger text-uppercase">
+              {{mensajeYaRegistrado}}
+        </small>
         <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
       </form>
   </main>

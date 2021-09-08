@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/models/usuario/usuario';
+import { UsuarioDAOService } from 'src/app/services/usuarioDAO/usuario-dao.service';
+import { UsuarioService } from 'src/app/services/usuarioService/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +16,12 @@ export class LoginComponent implements OnInit {
 
   button_title: string = "Iniciar Sesion";
 
-  loginCuentaForm! : FormGroup;
-  
+  loginCuentaForm!: FormGroup;
+
   constructor(
-    router : Router
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private usuario_backend_service: UsuarioDAOService
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +37,26 @@ export class LoginComponent implements OnInit {
       )
     });
 
+    this.usuarioService.registro
+      .subscribe((usuario) => {
+        console.log(usuario);
+      });
+
   }
 
+  onSubmit() {
+
+    if (!this.loginCuentaForm.valid) return;
+
+    const email = this.loginCuentaForm.value.email;
+    const contrasenia = this.loginCuentaForm.value.password;
+
+    const usuario = new Usuario( 
+      email, 
+      contrasenia 
+    );
+
+    this.usuario_backend_service.login(usuario);
+  }
 
 }

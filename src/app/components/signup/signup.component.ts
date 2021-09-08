@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/models/usuario/usuario';
+import { UsuarioDAOService } from 'src/app/services/usuarioDAO/usuario-dao.service';
+import { UsuarioService } from 'src/app/services/usuarioService/usuario.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,9 +17,15 @@ export class SignupComponent implements OnInit {
   button_title: string = "Crear Cuenta";
 
   crearCuentaForm! : FormGroup;
-  
+
+  disableButton : boolean = false;
+
+  mensajeYaRegistrado : string = '';
+
   constructor(
-    router : Router
+    private router : Router,
+    private usuarioService : UsuarioService,
+    private usuarioBackend : UsuarioDAOService
   ) { }
 
   ngOnInit(): void {
@@ -40,8 +49,36 @@ export class SignupComponent implements OnInit {
       )
     });
 
+    this.usuarioService.registro
+      .subscribe ( (usuario) => {
+        this.disableButton = true;
+      } );
+
+    this.usuarioService.usuarioYaRegistrado
+      .subscribe( (mensaje) => {
+        this.mensajeYaRegistrado = mensaje;
+      } );
+
   }
 
-  
+  onSubmit() : void {
+
+    if ( !this.crearCuentaForm.valid ) return;
+
+    const email = this.crearCuentaForm.value.usuario;
+    const password = this.crearCuentaForm.value.password;
+    const nombre = this.crearCuentaForm.value.nombre;
+    const apellido = this.crearCuentaForm.value.apellido;
+
+    const usuario = new Usuario(
+      email,
+      password,
+      nombre,
+      apellido
+    );
+    
+    this.usuarioBackend.register(usuario);
+
+  }
 
 }

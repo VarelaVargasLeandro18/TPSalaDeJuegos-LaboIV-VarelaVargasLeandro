@@ -1,12 +1,12 @@
 <div class="text-center text-white">
   <main class="form-signin bg-dark">
-      <form [formGroup] = "loginCuentaForm" >
+      <form [formGroup] = "loginCuentaForm" (ngSubmit)="onSubmit()" >
         <i class="far fa-user"></i>
         <h1 class="h3 mb-3 fw-normal">{{title}}</h1>
   
         <div class="form-floating text-dark">
           <input formControlName="usuario" type="email" class="form-control" id="floatingInput" placeholder="usuario123">
-          <label for="floatingInput">Nombre de Usuario</label>
+          <label for="floatingInput">Email</label>
           <small
               [hidden]= "loginCuentaForm.controls['usuario'].valid"
               class="form-text text-danger text-uppercase">
@@ -28,7 +28,7 @@
             <input type="checkbox" value="remember-me"> Recuérdame
           </label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">{{button_title}}</button>
+        <button [disabled]="!loginCuentaForm.valid" class="w-100 btn btn-lg btn-primary" type="submit">{{button_title}}</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
       </form>
   </main>
