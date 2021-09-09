@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario/usuario';
 import { UsuarioService } from 'src/app/services/usuarioService/usuario.service';
 
@@ -12,6 +13,7 @@ export class NavigationComponent implements OnInit {
   usuario? : Usuario;
 
   constructor(
+    private router : Router,
     private usuarioService : UsuarioService
   ) { }
 
@@ -20,8 +22,18 @@ export class NavigationComponent implements OnInit {
     this.usuarioService.sesionIniciada
       .subscribe( (usuario) => {
         this.usuario = usuario;
+        this.router.navigate( ['/home'] );
       } );
 
+      this.usuarioService.sesionTerminada
+        .subscribe( (termino) => {
+          if ( termino ) this.usuario = undefined; 
+        } )
+
+  }
+
+  onLogOut() {
+    this.usuarioService.salirDeSesion();
   }
 
 }

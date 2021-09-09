@@ -9,8 +9,10 @@ export class UsuarioService {
   registro : EventEmitter<Usuario> = new EventEmitter<Usuario>();
   usuarioYaRegistrado : EventEmitter<string> = new EventEmitter<string>();
   sesionIniciada : EventEmitter<Usuario> = new EventEmitter<Usuario>();
+  errorInicioDeSesion : EventEmitter<string> = new EventEmitter<string> ();
+  sesionTerminada : EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  iniciado! : Usuario;
+  iniciado? : Usuario;
   
   constructor(
   ) { }
@@ -27,6 +29,15 @@ export class UsuarioService {
   iniciarSesion( usuario : Usuario ) {
     this.iniciado = usuario;
     this.sesionIniciada.emit(usuario);
+  }
+
+  errorIniciarSesion() {
+    this.errorInicioDeSesion.emit( "Error al iniciar sesión. Datos incorrectos!" );
+  }
+
+  salirDeSesion() {
+    this.iniciado = undefined;
+    this.sesionTerminada.emit(true);
   }
 
 }

@@ -21,11 +21,14 @@ export class UsuarioDAOService implements OnInit {
 
   async login ( usuario : Usuario ) {
     const usuarioLogeado = ( await this.checkIfExist(usuario) );
+    console.log(usuarioLogeado);
 
-    if ( usuarioLogeado == null || usuarioLogeado == undefined ) return;
-    
+    if ( usuarioLogeado === null || usuarioLogeado === undefined ) {
+      this.usuarioService.errorIniciarSesion();
+      return
+    }
     this.usuarioService.iniciarSesion( usuarioLogeado );
-    this.logger( usuario, 'Inicio de Sesion' );
+    this.logger( usuarioLogeado, 'Inicio de Sesion' );
   }
 
   private async checkIfExist ( usuario : Usuario )  {
@@ -35,11 +38,15 @@ export class UsuarioDAOService implements OnInit {
       queryUrl
     ).toPromise()
 
+    if ( firebaseUsr == null || firebaseUsr == undefined ) return firebaseUsr;
+
     let usr = null;
 
     for ( const [key, value] of Object.entries(firebaseUsr) ) {
       usr = value;
     }
+
+    if ( usuario.contrasenia !== usr.contrasenia ) return undefined;
     
     return usr;
   }
@@ -48,7 +55,7 @@ export class UsuarioDAOService implements OnInit {
     const headers = new HttpHeaders();
     const usuarioLogeado = ( await this.checkIfExist(usuario) );
     
-    if ( usuarioLogeado != undefined ) {
+    if ( usuarioLogeado != undefined && usuarioLogeado != null ) {
       this.usuarioService.usuarioExistente('Este email se encuentra en uso.');
       return
     }

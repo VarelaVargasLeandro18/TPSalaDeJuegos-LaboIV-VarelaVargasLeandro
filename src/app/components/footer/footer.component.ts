@@ -18,7 +18,12 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario = this.usuarioService.iniciado;
-    console.log(this.usuarioService.iniciado)
+
+    this.usuarioService.sesionTerminada
+      .subscribe( (termino) => {
+        if ( termino ) this.usuario = undefined;
+      } )
+
   }
 
 }

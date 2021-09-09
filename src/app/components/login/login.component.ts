@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario/usuario';
 import { UsuarioDAOService } from 'src/app/services/usuarioDAO/usuario-dao.service';
+import { UsuarioService } from 'src/app/services/usuarioService/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +15,13 @@ export class LoginComponent implements OnInit {
 
   button_title: string = "Iniciar Sesion";
 
+  errorInicioDeSesion : string = "";
+
   loginCuentaForm!: FormGroup;
 
   constructor(
-    private router: Router,
-    private usuario_backend_service: UsuarioDAOService
+    private usuario_backend_service: UsuarioDAOService,
+    private usuarioService : UsuarioService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +36,11 @@ export class LoginComponent implements OnInit {
         [Validators.required, Validators.maxLength(10), Validators.minLength(5)]
       )
     });
+
+    this.usuarioService.errorInicioDeSesion
+      .subscribe( (mensaje) => {
+        this.errorInicioDeSesion = mensaje;
+      } );
 
   }
 
@@ -50,6 +57,13 @@ export class LoginComponent implements OnInit {
     );
 
     this.usuario_backend_service.login(usuario);
+  }
+
+  iniciarSesionAutomaticamente() {
+    this.loginCuentaForm.patchValue({
+      email: "admin@admin.com",
+      password: "12345"
+    });
   }
 
 }

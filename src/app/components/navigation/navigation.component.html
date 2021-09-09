@@ -8,5 +8,6 @@
       <a [hidden]="usuario != undefined" class="nav-link rounded border border-black" routerLink="log-in">Iniciar Sesión</a>
       <a [hidden]="usuario != undefined" class="nav-link rounded border border-black" routerLink="sign-up">Crear cuenta</a>
       <a class="nav-link rounded border border-black" routerLink="who-am-i">Quién soy</a>
+      <button (click)="onLogOut()" class="btn btn-lg btn-danger" > <i class="fas fa-sign-out-alt"></i> Log Out</button>
     </nav>
 </header>
