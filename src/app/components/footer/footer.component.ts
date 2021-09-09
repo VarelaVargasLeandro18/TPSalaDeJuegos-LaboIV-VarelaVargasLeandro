@@ -22,7 +22,7 @@ export class FooterComponent implements OnInit {
     this.usuarioService.sesionTerminada
       .subscribe( (termino) => {
         if ( termino ) this.usuario = undefined;
-      } )
+      } );
 
   }
 
