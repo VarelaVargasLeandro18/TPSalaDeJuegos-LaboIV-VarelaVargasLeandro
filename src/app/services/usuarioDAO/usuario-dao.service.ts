@@ -1,6 +1,4 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario/usuario';
 import { UsuarioService } from '../usuarioService/usuario.service';
@@ -26,17 +24,24 @@ export class UsuarioDAOService implements OnInit {
 
     if ( usuarioLogeado == null || usuarioLogeado == undefined ) return;
     
-    this.usuarioService.sesionIniciada.emit( usuarioLogeado );
+    this.usuarioService.iniciarSesion( usuarioLogeado );
     this.logger( usuario, 'Inicio de Sesion' );
   }
 
   private async checkIfExist ( usuario : Usuario )  {
-    console.log(usuario);
     let queryUrl = this.url + `usuarios.json?orderBy="email"&equalTo="${usuario.email}"&limitToFirst=1`;
 
-    return await this.http.get<Usuario>(
+    const firebaseUsr = await this.http.get(
       queryUrl
     ).toPromise()
+
+    let usr = null;
+
+    for ( const [key, value] of Object.entries(firebaseUsr) ) {
+      usr = value;
+    }
+    
+    return usr;
   }
 
   async register ( usuario : Usuario ) {

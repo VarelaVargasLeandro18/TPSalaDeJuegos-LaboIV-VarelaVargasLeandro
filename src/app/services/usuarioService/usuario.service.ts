@@ -20,15 +20,12 @@ export class UsuarioService {
     this.registro.emit(this.iniciado);
   }
 
-  getUsuario() {
-    return this.iniciado;
-  }
-
   usuarioExistente( mensaje : string ) {
     this.usuarioYaRegistrado.emit(mensaje);
   }
 
   iniciarSesion( usuario : Usuario ) {
+    this.iniciado = usuario;
     this.sesionIniciada.emit(usuario);
   }
 
