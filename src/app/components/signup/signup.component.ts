@@ -52,12 +52,13 @@ export class SignupComponent implements OnInit {
     this.usuarioService.registro
       .subscribe ( (usuario) => {
         this.disableButton = true;
-      } );
+        this.usuarioBackend.login(usuario);
+    } );
 
     this.usuarioService.usuarioYaRegistrado
       .subscribe( (mensaje) => {
         this.mensajeYaRegistrado = mensaje;
-      } );
+    } );
 
   }
 
@@ -78,7 +79,6 @@ export class SignupComponent implements OnInit {
     );
     
     this.usuarioBackend.register(usuario);
-
   }
 
 }

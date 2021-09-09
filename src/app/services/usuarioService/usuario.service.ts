@@ -1,6 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario/usuario';
-import { UsuarioDAOService } from '../usuarioDAO/usuario-dao.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +8,7 @@ export class UsuarioService {
 
   registro : EventEmitter<Usuario> = new EventEmitter<Usuario>();
   usuarioYaRegistrado : EventEmitter<string> = new EventEmitter<string>();
+  sesionIniciada : EventEmitter<Usuario> = new EventEmitter<Usuario>();
 
   iniciado! : Usuario;
   
@@ -26,6 +26,10 @@ export class UsuarioService {
 
   usuarioExistente( mensaje : string ) {
     this.usuarioYaRegistrado.emit(mensaje);
+  }
+
+  iniciarSesion( usuario : Usuario ) {
+    this.sesionIniciada.emit(usuario);
   }
 
 }

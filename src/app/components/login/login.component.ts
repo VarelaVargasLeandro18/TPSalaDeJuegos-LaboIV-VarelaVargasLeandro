@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario/usuario';
 import { UsuarioDAOService } from 'src/app/services/usuarioDAO/usuario-dao.service';
-import { UsuarioService } from 'src/app/services/usuarioService/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -20,14 +19,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private usuarioService: UsuarioService,
     private usuario_backend_service: UsuarioDAOService
   ) { }
 
   ngOnInit(): void {
 
     this.loginCuentaForm = new FormGroup({
-      usuario: new FormControl(
+      email: new FormControl(
         '',
         [Validators.required, Validators.email]
       ),
@@ -36,11 +34,6 @@ export class LoginComponent implements OnInit {
         [Validators.required, Validators.maxLength(10), Validators.minLength(5)]
       )
     });
-
-    this.usuarioService.registro
-      .subscribe((usuario) => {
-        console.log(usuario);
-      });
 
   }
 

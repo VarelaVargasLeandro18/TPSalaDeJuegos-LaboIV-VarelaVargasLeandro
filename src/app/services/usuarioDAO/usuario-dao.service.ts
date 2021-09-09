@@ -21,18 +21,27 @@ export class UsuarioDAOService implements OnInit {
   ngOnInit() {
   } 
 
-  async login ( usuario : Usuario )  {
+  async login ( usuario : Usuario ) {
+    const usuarioLogeado = ( await this.checkIfExist(usuario) );
+
+    if ( usuarioLogeado == null || usuarioLogeado == undefined ) return;
+    
+    this.usuarioService.sesionIniciada.emit( usuarioLogeado );
+    this.logger( usuario, 'Inicio de Sesion' );
+  }
+
+  private async checkIfExist ( usuario : Usuario )  {
+    console.log(usuario);
     let queryUrl = this.url + `usuarios.json?orderBy="email"&equalTo="${usuario.email}"&limitToFirst=1`;
 
-    return await this.http.get<Usuario[]>(
+    return await this.http.get<Usuario>(
       queryUrl
     ).toPromise()
-
   }
 
   async register ( usuario : Usuario ) {
     const headers = new HttpHeaders();
-    const usuarioLogeado = ( await this.login(usuario) );
+    const usuarioLogeado = ( await this.checkIfExist(usuario) );
     
     if ( usuarioLogeado != undefined ) {
       this.usuarioService.usuarioExistente('Este email se encuentra en uso.');
