@@ -11,6 +11,7 @@ export class UsuarioService {
   sesionIniciada : EventEmitter<Usuario> = new EventEmitter<Usuario>();
   errorInicioDeSesion : EventEmitter<string> = new EventEmitter<string> ();
   sesionTerminada : EventEmitter<boolean> = new EventEmitter<boolean>();
+  errorRegistro : EventEmitter<string> = new EventEmitter<string>();
 
   iniciado? : Usuario;
   
@@ -38,6 +39,10 @@ export class UsuarioService {
   salirDeSesion() {
     this.iniciado = undefined;
     this.sesionTerminada.emit(true);
+  }
+
+  errorRegistrar( mensaje : string ) {
+    this.errorRegistro.emit(mensaje);
   }
 
 }

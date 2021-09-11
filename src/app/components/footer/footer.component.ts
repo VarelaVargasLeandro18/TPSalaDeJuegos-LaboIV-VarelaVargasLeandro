@@ -11,7 +11,6 @@ export class FooterComponent implements OnInit {
 
   usuario? : Usuario;
 
-
   constructor(
     private usuarioService : UsuarioService
   ) { }

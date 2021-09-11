@@ -3,6 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario/usuario';
 import { UsuarioService } from '../usuarioService/usuario.service';
 import { Logger } from 'src/app/models/logger/logger';
+import { AngularFirestore, DocumentReference, DocumentSnapshot, DocumentSnapshotExists } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -10,87 +11,76 @@ import { Logger } from 'src/app/models/logger/logger';
 export class UsuarioDAOService implements OnInit {
 
   private url : string = "https://labo-iv-112ed-default-rtdb.firebaseio.com/";
+  private collectionUsr : string = "usuarios";
 
   constructor(
     private http : HttpClient,
-    private usuarioService : UsuarioService
+    private usuarioService : UsuarioService,
+    private db : AngularFirestore
   ) { }
 
   ngOnInit() {
   } 
 
   async login ( usuario : Usuario ) {
-    const usuarioLogeado = ( await this.checkIfExist(usuario) );
-    console.log(usuarioLogeado);
+    const usuarioSnapshot = await this.checkIfExist(usuario);
 
-    if ( usuarioLogeado === null || usuarioLogeado === undefined ) {
+    if ( usuarioSnapshot === undefined ) {
       this.usuarioService.errorIniciarSesion();
       return
     }
-    this.usuarioService.iniciarSesion( usuarioLogeado );
-    this.logger( usuarioLogeado, 'Inicio de Sesion' );
+
+    const usuarioDB = usuarioSnapshot.data() as Usuario;
+    const usuarioReference = usuarioSnapshot.ref;
+    usuarioDB.email = usuario.email;
+    this.usuarioService.iniciarSesion( usuarioDB );
+    this.logger( usuarioReference, 'Inicio de Sesion' );
   }
 
-  private async checkIfExist ( usuario : Usuario )  {
-    let queryUrl = this.url + `usuarios.json?orderBy="email"&equalTo="${usuario.email}"&limitToFirst=1`;
+  private async checkIfExist ( usuario : Usuario ) {
+    const usuarioSnapshot = await this.db.collection(this.collectionUsr).doc<Usuario>( usuario.email ).get().toPromise();
 
-    const firebaseUsr = await this.http.get(
-      queryUrl
-    ).toPromise()
-
-    if ( firebaseUsr == null || firebaseUsr == undefined ) return firebaseUsr;
-
-    let usr = null;
-
-    for ( const [key, value] of Object.entries(firebaseUsr) ) {
-      usr = value;
+    if ( !usuarioSnapshot.exists ) {
+      return undefined;
     }
-
-    if ( usuario.contrasenia !== usr.contrasenia ) return undefined;
     
-    return usr;
+    return usuarioSnapshot;
   }
 
   async register ( usuario : Usuario ) {
-    const headers = new HttpHeaders();
     const usuarioLogeado = ( await this.checkIfExist(usuario) );
     
-    if ( usuarioLogeado != undefined && usuarioLogeado != null ) {
+    if ( usuarioLogeado != undefined ) {
       this.usuarioService.usuarioExistente('Este email se encuentra en uso.');
       return
     }
-
-    const response = await this.http.post(
-      this.url + 'usuarios.json',
-      usuario,
-      {observe: 'response'}
-    ).toPromise();
-
-    if ( !usuario.getError() && response.status === 200 ) {
-      this.logger( usuario, 'Registro' );
-      this.usuarioService.registroUsuario(usuario);
-      return
+    
+    try {
+      await this.db.collection(this.collectionUsr).doc( usuario.email ).set( {
+        contrasenia: usuario.contrasenia,
+        apellido: usuario.apellido,
+        nombre: usuario.nombre
+      } );
+      const usuarioRef = (await this.db.collection( this.collectionUsr ).doc<Usuario>( usuario.email ).get().toPromise()).ref;
+      this.logger( usuarioRef, 'Registro' );
+      this.usuarioService.registroUsuario( usuario );
+    } catch ( error ) {
+      console.error(error)
+      this.usuarioService.errorRegistrar( 'Error al realizar el registro' );
     }
-
-    usuario.setError();
   }
 
-  logger( usuario : Usuario, logEvent : string ) {
+  logger( refUsuario : DocumentReference<Usuario>, logEvent : string ) {
 
-    const actualDateTime = new Date();
+    const hora = new Date();
     const log = new Logger(
-      actualDateTime,
-      usuario,
-      logEvent
+      logEvent,
+      hora,
+      refUsuario
     );
-
-    this.http.post(
-      this.url + 'logger.json',
-      log,
-      {
-        observe: 'response'
-      }
-    ).subscribe( (response) => console.log(response.ok? log : 'no se pudo realizar el LOG.') );
+    
+    console.log({...log})
+    this.db.collection('logs').add( {...log} );
 
   }
 
