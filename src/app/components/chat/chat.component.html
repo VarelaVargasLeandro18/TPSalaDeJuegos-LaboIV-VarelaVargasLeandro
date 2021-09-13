@@ -1,0 +1,11 @@
+
+<div class="box-body mx-auto my-auto p-5">
+    <app-lista-chats
+        [usuario]="usuario"
+    ></app-lista-chats>
+</div>
+
+<div class="w-100 d-flex flex-row position-absolute bottom-0 start-0">
+    <input [(ngModel)]="mensaje" type="text" class="form-control">
+    <button (click)="enviarMensaje()" class="btn btn-lg btn-dark"><i class="far fa-paper-plane"></i></button>
+</div>

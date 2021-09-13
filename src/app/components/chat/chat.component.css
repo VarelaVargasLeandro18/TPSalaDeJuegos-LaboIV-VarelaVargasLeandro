@@ -1,0 +1,49 @@
+.box.collapsed-box .box-body {
+    display: none;
+}
+.box-body {
+    background-color: rgba(0, 0, 0, .4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.box-body {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px;
+}
+.box-body>.table {
+    margin-bottom: 0;
+}
+.box-body{
+    margin-top: 5px;
+}
+.box-body {
+    margin: -19px;
+}
+.box-body.no-padding {
+    margin: -9px;
+}
+.box-body .box-pane {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 3px;
+}
+.box-body .box-pane-right {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 0;
+}
+.direct-chat .box-body {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    position: relative;
+    overflow-x: hidden;
+    padding: 0;
+}                           

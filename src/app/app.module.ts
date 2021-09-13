@@ -8,15 +8,14 @@ import { HomeComponent } from './components/home/home.component';
 import { WhoAmIComponent } from './components/who-am-i/who-am-i.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { JuegosComponent } from './components/juegos/juegos.component';
-import { JuegoComponent } from './components/juego/juego.component';
-import { JuegoPreviewComponent } from './components/juego-preview/juego-preview.component';
 import { ErrorComponent } from './components/error/error.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
+import { ChatComponent } from './components/chat/chat.component';
+import { ListaChatsComponent } from './components/lista-chats/lista-chats.component';
 
 @NgModule({
   declarations: [
@@ -26,18 +25,18 @@ import { environment } from '../environments/environment';
     WhoAmIComponent,
     NavigationComponent,
     SignupComponent,
-    JuegosComponent,
-    JuegoComponent,
-    JuegoPreviewComponent,
     ErrorComponent,
-    FooterComponent
+    FooterComponent,
+    ChatComponent,
+    ListaChatsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

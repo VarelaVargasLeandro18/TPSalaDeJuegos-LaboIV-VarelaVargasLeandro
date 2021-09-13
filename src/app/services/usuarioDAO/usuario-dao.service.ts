@@ -1,20 +1,17 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario/usuario';
 import { UsuarioService } from '../usuarioService/usuario.service';
 import { Logger } from 'src/app/models/logger/logger';
-import { AngularFirestore, DocumentReference, DocumentSnapshot, DocumentSnapshotExists } from '@angular/fire/compat/firestore';
+import { AngularFirestore, DocumentReference} from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioDAOService implements OnInit {
 
-  private url : string = "https://labo-iv-112ed-default-rtdb.firebaseio.com/";
   private collectionUsr : string = "usuarios";
 
   constructor(
-    private http : HttpClient,
     private usuarioService : UsuarioService,
     private db : AngularFirestore
   ) { }
@@ -37,7 +34,7 @@ export class UsuarioDAOService implements OnInit {
     this.logger( usuarioReference, 'Inicio de Sesion' );
   }
 
-  private async checkIfExist ( usuario : Usuario ) {
+  async checkIfExist ( usuario : Usuario ) {
     const usuarioSnapshot = await this.db.collection(this.collectionUsr).doc<Usuario>( usuario.email ).get().toPromise();
 
     if ( !usuarioSnapshot.exists ) {
@@ -83,5 +80,7 @@ export class UsuarioDAOService implements OnInit {
     this.db.collection('logs').add( {...log} );
 
   }
+
+
 
 }

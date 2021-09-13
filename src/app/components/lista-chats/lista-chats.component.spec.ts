@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { JuegoPreviewComponent } from './juego-preview.component';
+import { ListaChatsComponent } from './lista-chats.component';
 
-describe('JuegoPreviewComponent', () => {
-  let component: JuegoPreviewComponent;
-  let fixture: ComponentFixture<JuegoPreviewComponent>;
+describe('ListaChatsComponent', () => {
+  let component: ListaChatsComponent;
+  let fixture: ComponentFixture<ListaChatsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JuegoPreviewComponent ]
+      declarations: [ ListaChatsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(JuegoPreviewComponent);
+    fixture = TestBed.createComponent(ListaChatsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
