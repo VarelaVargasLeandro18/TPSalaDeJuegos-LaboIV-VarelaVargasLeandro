@@ -28,4 +28,14 @@ export class ListaChatsComponent implements OnInit {
       this.chats = await this.chatDao.obtenerChats();
   }
 
+  chatsPorFecha() {
+    return this.chats.sort( ( a : Chat, b : Chat ) => {
+      
+      if ( a.hora > b.hora ) return 1;
+      if ( a.hora === b.hora ) return 0;
+
+      return -1;
+    } );
+  }
+
 }

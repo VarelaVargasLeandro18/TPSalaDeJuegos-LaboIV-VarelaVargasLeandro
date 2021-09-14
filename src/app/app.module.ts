@@ -16,6 +16,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { ChatComponent } from './components/chat/chat.component';
 import { ListaChatsComponent } from './components/lista-chats/lista-chats.component';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ListaChatsComponent } from './components/lista-chats/lista-chats.compon
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

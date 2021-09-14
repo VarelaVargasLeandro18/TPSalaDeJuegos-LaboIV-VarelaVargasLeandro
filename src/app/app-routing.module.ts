@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'sign-up', component: SignupComponent},
   {path: 'home', component: HomeComponent},
   {path: 'chat', component: ChatComponent},
-  { path: 'juegos', loadChildren: () => import('./juegos/juegos.module').then(m => m.JuegosModule) },
+  { path: 'juegos', loadChildren: () => import('./subModules/juegos/juegos.module').then(m => m.JuegosModule) },
 
   {path: '**', component: ErrorComponent}
 ];

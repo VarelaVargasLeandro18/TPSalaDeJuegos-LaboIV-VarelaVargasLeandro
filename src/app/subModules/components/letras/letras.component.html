@@ -1,0 +1,5 @@
+<div class="d-flex row">
+    <div *ngFor="let arrayLetras of letras" class="my-md-1 d-flex column justify-content-center">
+        <button (click)="settearLetra(letra)" class="button px-md-3 mx-md-1 btn-primary btn-success" *ngFor="let letra of arrayLetras" >{{letra}}</button>
+    </div>
+</div>

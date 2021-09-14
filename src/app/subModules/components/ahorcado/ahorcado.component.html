@@ -1,0 +1,9 @@
+<div id="vida-wrapper">
+    <app-barra-de-vida
+        [cantVidas]="this.vidas" ></app-barra-de-vida>
+</div>
+
+<div id="letras-wrapper" class="">
+    <app-letras
+        (letra)="eligeLetra($event)"></app-letras>
+</div>

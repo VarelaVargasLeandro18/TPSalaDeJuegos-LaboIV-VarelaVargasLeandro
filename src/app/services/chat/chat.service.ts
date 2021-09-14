@@ -11,7 +11,6 @@ export class ChatService {
   constructor() { }
 
   cambioDeChats( chats : Chat[] ) {
-    console.log(chats);
     this.chatsEncontrados.emit(chats);
   }
 

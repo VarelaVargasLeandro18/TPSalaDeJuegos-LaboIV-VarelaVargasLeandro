@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario/usuario';
 import { UsuarioDAOService } from 'src/app/services/usuarioDAO/usuario-dao.service';
 import { UsuarioService } from 'src/app/services/usuarioService/usuario.service';
@@ -21,11 +21,13 @@ export class SignupComponent implements OnInit {
   disableButton : boolean = false;
 
   mensajeYaRegistrado : string = '';
+  
+  mensajeErrorGeneral : string = '';
 
   constructor(
-    private router : Router,
     private usuarioService : UsuarioService,
-    private usuarioBackend : UsuarioDAOService
+    private usuarioBackend : UsuarioDAOService,
+    private afAuth : AngularFireAuth
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class SignupComponent implements OnInit {
       ),
       password: new FormControl(
         '',
-        [Validators.required, Validators.maxLength(10), Validators.minLength(5)]
+        [Validators.required, Validators.minLength(5), Validators.maxLength(10)]
       ),
       nombre: new FormControl(
         '',
@@ -47,6 +49,7 @@ export class SignupComponent implements OnInit {
         '',
         [Validators.required]
       )
+
     });
 
     this.usuarioService.registro
@@ -63,7 +66,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() : void {
-
+    
     if ( !this.crearCuentaForm.valid ) return;
 
     const email = this.crearCuentaForm.value.usuario;
@@ -77,6 +80,14 @@ export class SignupComponent implements OnInit {
       nombre,
       apellido
     );
+    
+    /* try {
+      this.afAuth.signInWithEmailAndPassword( email, password ).then( (credentials) => console.log(credentials) )
+      .catch( (reason) => {
+        this.mensajeErrorGeneral = reason.code;
+      } );
+    } catch( error ) {
+    } */
     
     this.usuarioBackend.register(usuario);
   }
