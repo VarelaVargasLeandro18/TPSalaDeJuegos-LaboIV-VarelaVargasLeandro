@@ -6,6 +6,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class VidaService {
 
   cambioVida : EventEmitter<number> = new EventEmitter<number> ();
+  setteoVida : EventEmitter<number> = new EventEmitter<number> ();
 
   constructor() { }
 }

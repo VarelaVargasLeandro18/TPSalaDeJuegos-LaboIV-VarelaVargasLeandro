@@ -16,12 +16,23 @@ export class BarraDeVidaComponent implements OnInit {
   ) {
     vidaService.cambioVida
       .subscribe( (valor) => {
+        if ( (this.cantVidas + valor) < 0 ) return
+
         this.cantVidas += valor;
         this.ngOnInit();
+      } );
+    
+    vidaService.setteoVida
+      .subscribe( (valor) => {
+        this.cantVidas = valor;
       } );
   }
 
   ngOnInit(): void {
+    this.setInterfaz();
+  }
+
+  private setInterfaz () {
     this.vidas = [];
     for( let vida = 0; vida < this.cantVidas; vida++ )
       this.vidas.push('');

@@ -3,7 +3,17 @@
         [cantVidas]="this.vidas" ></app-barra-de-vida>
 </div>
 
-<div id="letras-wrapper" class="">
+<div *ngIf="palabra != ''" id="palabra-wrapper" class="bg-warning w-50 mx-auto">
+    <div id="palabra" class="mx-auto w-25 border border-1 text-center">
+        <span *ngFor="let letra of descubierto.split('')" >{{letra}} </span>
+    </div>
+</div>
+
+<div id="letras-wrapper">
     <app-letras
         (letra)="eligeLetra($event)"></app-letras>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="palabra == ''">
+    <button (click)="rollPalabra()" class="btn btn-primary btn-warning border rounded p-3">DAME UNA PALABRA!!!</button>
 </div>
