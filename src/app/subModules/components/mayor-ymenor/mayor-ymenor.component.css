@@ -1,0 +1,14 @@
+.custom-btn:hover {
+    background-color: aliceblue;
+}
+
+.mazo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    outline: 3px solid black;
+    background-color: aliceblue;
+    font-size: 2rem;
+}

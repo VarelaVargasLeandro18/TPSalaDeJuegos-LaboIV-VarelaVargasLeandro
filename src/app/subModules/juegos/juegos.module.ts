@@ -6,6 +6,7 @@ import { AhorcadoComponent } from '../components/ahorcado/ahorcado.component';
 import { LetrasComponent } from '../components/letras/letras.component';
 import { BarraDeVidaComponent } from '../components/barra-de-vida/barra-de-vida.component';
 import { JuegoNotFoundComponent } from '../components/juego-not-found/juego-not-found.component';
+import { MayorYmenorComponent } from '../components/mayor-ymenor/mayor-ymenor.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { JuegoNotFoundComponent } from '../components/juego-not-found/juego-not-
     AhorcadoComponent,
     LetrasComponent,
     BarraDeVidaComponent,
-    JuegoNotFoundComponent
+    JuegoNotFoundComponent,
+    MayorYmenorComponent
   ],
   imports: [
     CommonModule,

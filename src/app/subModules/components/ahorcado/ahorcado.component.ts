@@ -2,12 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { TecladoService } from '../../services/teclado.service';
 import { VidaService } from '../../services/vida.service';
 
+/*
+  Ahorcado
+  No se debe ingresar datos desde el teclado. Utilizar botones para el ingreso de las letras.
+*/
 @Component({
   selector: 'app-ahorcado',
   templateUrl: './ahorcado.component.html',
   styleUrls: ['./ahorcado.component.css']
 })
 export class AhorcadoComponent implements OnInit {
+  readonly maxVidas : number = 10;
 
   palabras : string[] = [
     "hola", "piedra", "zapato", "auto", "documento", "manivela", "desnivel", "redondel", "alcaucil", "noviembre", "desastre",
@@ -15,7 +20,7 @@ export class AhorcadoComponent implements OnInit {
   ];
   palabra : string = "";
   descubierto : string = "";
-  vidas : number = 5;
+  vidas : number = this.maxVidas;
   resultado : string = "";
   perdio : boolean = false;
 
@@ -127,7 +132,7 @@ export class AhorcadoComponent implements OnInit {
   }
 
   private reiniciarVidas() {
-    this.vidas = 5;
+    this.vidas = this.maxVidas;
     this.vidaService.setteoVida.emit( this.vidas );
   }
 
