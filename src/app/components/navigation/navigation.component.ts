@@ -34,6 +34,7 @@ export class NavigationComponent implements OnInit {
 
   onLogOut() {
     this.usuarioService.salirDeSesion();
+    this.router.navigate( ['/log-in'] );
   }
 
 }
