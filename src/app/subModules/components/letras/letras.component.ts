@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TecladoService } from '../../services/teclado.service';
 
 @Component({
   selector: 'app-letras',
@@ -15,9 +16,14 @@ export class LetrasComponent implements OnInit {
     ['z','x','c','v','b','n','m']
   ];
 
-  constructor() { }
+  bloqueado : boolean = true;
+
+  constructor(
+    private tecladoService : TecladoService
+  ) { }
 
   ngOnInit(): void {
+    this.tecladoService.bloquearTeclado.subscribe( (bloquear) => this.bloqueado = bloquear );
   }
 
   settearLetra( letra : string ) {
