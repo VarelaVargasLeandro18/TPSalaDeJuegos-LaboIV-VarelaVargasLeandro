@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { interval, Observable, Subscribable, Subscription } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 import { TecladoService } from '../../services/teclado.service';
 
 @Component({
@@ -132,7 +132,7 @@ export class KeyboardattackComponent implements OnInit {
     this.terminarCarga();
 
     if( this.vidaJugador === 0 ) {
-      this.setMensajeGana();
+      this.setMensajePierde();
       this.reiniciarVidaJugador();
       this.reiniciarVidaJugador();
       this.reiniciarTiempoATranscurrir();

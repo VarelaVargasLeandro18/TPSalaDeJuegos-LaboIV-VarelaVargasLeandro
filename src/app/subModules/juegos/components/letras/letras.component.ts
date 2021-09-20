@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { TecladoService } from '../../services/teclado.service';
+import { TecladoService } from 'src/app/subModules/juegos/services/teclado.service';
 
 @Component({
   selector: 'app-letras',
