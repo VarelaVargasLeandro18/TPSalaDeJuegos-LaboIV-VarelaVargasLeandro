@@ -1,0 +1,35 @@
+<div class="wrapper">
+
+    <div class="row">
+        <div class="col-6 text-center">
+            <span *ngIf = "mensaje">Vida Jugador: {{vidaJugador}}</span>
+        </div>
+        <div class="col-6 text-center">
+            <span *ngIf = "mensaje">Vida Oponente: {{vidaOponente}}</span>
+        </div>
+    </div>  
+
+    <div class="w-100 text-center">
+        <span class="h1" *ngIf = "!jugando">{{mensaje}}</span>
+    </div>
+
+    <div class="w-100 text-center">
+        <span class="h1" *ngIf="jugando">Pulsa la letra: {{letraActual}}</span>
+    </div>
+    
+    <div class="w-100 text-center" *ngIf="!jugando" >
+        <button class="my-1 btn btn-primary btn-warning" (click)="jugar()">Empezar</button>
+    </div>
+    
+    <div class="mx-auto">
+        <span id="letra">{{letraActual}}</span>
+    </div>
+    
+    <div class="w-50 mx-auto progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [style.width]="tiempoTranscurrido + '%'" [attr.aria-valuenow]="tiempoTranscurrido" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    
+    <app-letras
+        (letra) = "tocaLetra($event)"
+    ></app-letras>
+</div>

@@ -7,6 +7,7 @@ import { LetrasComponent } from '../components/letras/letras.component';
 import { BarraDeVidaComponent } from '../components/barra-de-vida/barra-de-vida.component';
 import { JuegoNotFoundComponent } from '../components/juego-not-found/juego-not-found.component';
 import { MayorYmenorComponent } from '../components/mayor-ymenor/mayor-ymenor.component';
+import { KeyboardattackComponent } from '../components/keyboardattack/keyboardattack.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MayorYmenorComponent } from '../components/mayor-ymenor/mayor-ymenor.co
     LetrasComponent,
     BarraDeVidaComponent,
     JuegoNotFoundComponent,
-    MayorYmenorComponent
+    MayorYmenorComponent,
+    KeyboardattackComponent
   ],
   imports: [
     CommonModule,
