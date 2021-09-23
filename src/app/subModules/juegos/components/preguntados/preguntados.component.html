@@ -9,7 +9,7 @@
 <div *ngIf="this.juegosActuales"  class="container">
     <div *ngFor="let juego of this.juegosActuales" class="row">
         <div class="col-12 text-center">
-            <button [disabled]="this.deshabilitarRespuestas" (click)="contestarPregunta(juego.nombre)" class="btn btn-primary">{{juego.nombre}}</button>
+            <button [disabled]="this.deshabilitarRespuestas" (click)="contestarPregunta(juego.nombre)" class="btn btn-primary my-1">{{juego.nombre}}</button>
         </div>
     </div>
 </div>
@@ -20,4 +20,8 @@
 
 <div class="w-100 text-center">
     <button *ngIf="!deshabilitarBoton" (click)="realizarPregunta()" class="btn btn-warning">Preguntame de nuevo!</button>
+</div>
+
+<div *ngIf="mostrarCarga" class="w-100 text-center">
+    <object data="/assets/cargando.svg" type="image/svg+xml"></object>
 </div>

@@ -14,9 +14,10 @@ export class PreguntadosComponent implements OnInit {
   respuestaEs? : string;
   juegosActuales : Juego[] = [];
   juegoSeleccionado? : Juego;
-  deshabilitarBoton : boolean = false;
+  deshabilitarBoton : boolean = true;
   deshabilitarRespuestas : boolean = true;
   incorrecto : boolean = true;
+  mostrarCarga : boolean = true;
 
   constructor(
     private api : APIService
@@ -24,6 +25,7 @@ export class PreguntadosComponent implements OnInit {
 
   async ngOnInit() {
     await this.realizarPregunta();
+    this.mostrarCarga = false;
   }
 
   private async seleccionarJuegos() {
