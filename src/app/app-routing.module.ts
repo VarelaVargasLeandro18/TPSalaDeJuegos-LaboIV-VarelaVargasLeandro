@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChatComponent } from './components/chat/chat.component';
+import { EncuestaComponent } from './components/encuesta/encuesta.component';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'chat', component: ChatComponent},
   {path: 'home', loadChildren: () => import('./subModules/juegos/juegos.module').then(m => m.JuegosModule) },
   {path: '', redirectTo:'/home', pathMatch:'full' },
+  { path: 'encuesta', component: EncuestaComponent },
   {path: '**', component: ErrorComponent}
 ];
 

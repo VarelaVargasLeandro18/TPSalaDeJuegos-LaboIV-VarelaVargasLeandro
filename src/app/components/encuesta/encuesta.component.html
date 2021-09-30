@@ -1,1 +1,74 @@
-<p>encuesta works!</p>
+<div class="text-center">
+    <main class="form-signin">
+        <form [formGroup]="this.formulario" (ngSubmit)="onSubmit()">
+          <h1 class="h3 mb-3 fw-normal">Por favor responda esta breve encuesta</h1>
+          
+          <div class="form-floating">
+            <input formControlName="nombre" type="text" class="form-control" id="nombre">
+            <label for="floatingInput">Ingrese su nombre</label>
+          </div>
+          <span *ngIf="this.formulario.get('nombre')?.hasError('required')" class="text-danger">ESTE ES UN CAMPO OBLIGATORIO</span>
+          <span *ngIf="this.formulario.get('nombre')?.hasError('maxlength')" class="text-danger">SOLO SE PUEDEN HASTA 20 CARACTERES</span>
+          <span *ngIf="this.formulario.get('nombre')?.hasError('tieneEspacio')" class="text-danger">EL NOMBRE NO DEBE CONTENER ESPACIOS</span>
+
+          <div class="form-floating">
+            <input formControlName="apellido" type="text" class="form-control" id="apellido">
+            <label for="floatingInput">Ingrese su apellido</label>
+          </div>
+          <span *ngIf="this.formulario.get('apellido')?.hasError('required')" class="text-danger">ESTE ES UN CAMPO OBLIGATORIO</span>
+          <span *ngIf="this.formulario.get('apellido')?.hasError('maxlength')" class="text-danger">SOLO SE PUEDEN HASTA 20 CARACTERES</span>
+
+          <div class="form-floating">
+            <input formControlName="edad" type="text" class="form-control" id="floatingInput">
+            <label for="floatingInput">Ingrese su edad</label>
+          </div>
+          <span *ngIf="this.formulario.get('edad')?.hasError('required')" class="text-danger">ESTE ES UN CAMPO OBLIGATORIO</span>
+          <span *ngIf="this.formulario.get('edad')?.hasError('min')" class="text-danger">NO PUEDE SER MENOR A 18 AÑOS</span>
+
+          <div class="form-floating">
+            <input formControlName="mejorar" type="text" class="form-control" id="en-que-podemos-mejorar">
+            <label for="floatingInput">¿Qué juego podemos agregar?</label>
+          </div>
+          <span *ngIf="this.formulario.get('mejorar')?.hasError('required')" class="text-danger">ESTE ES UN CAMPO OBLIGATORIO</span>
+          <span *ngIf="this.formulario.get('mejorar')?.hasError('maxlength')" class="text-danger">TRANQUILO VAQUERO. SOLO SE PUEDEN HASTA 30 CARACTERES</span>
+
+            <div>
+                <input type="radio" formControlName="experiencia" id="mala" value="Mala">
+                <label for="mala">Mala</label>
+                <input type="radio" formControlName="experiencia" id="regular" value="Regular">
+                <label for="regular">Regular</label>
+                <input type="radio" formControlName="experiencia" id="buena" value="Buena">
+                <label for="buena">Buena</label>
+
+            </div>
+
+            <div class="d-flex flex-column align-items-center">
+                <h3>¿Cuales juegos te gustaron?</h3>
+                <div class="col-12">
+                    <input formControlName="ahorcado" type="checkbox" id="ahorcado" value="ahorcado">
+                    <label for="ahorcado">Ahorcado</label>
+                </div>
+                <div class="col-12">
+                    <input formControlName="preguntados" type="checkbox" id="preguntados" value="preguntados">
+                    <label for="preguntados">Preguntados</label>
+                </div>
+                <div class="col-12">
+                    <input formControlName="mayorMenor" type="checkbox" id="mayorYMenor" value="mayorYMenor">
+                    <label for="mayorYMenor">Mayor y Menor</label>
+                </div>
+                <div class="col-12">
+                    <input formControlName="keyboardattack" type="checkbox" id="keyboardattack" value="keyboardattack">
+                    <label for="keyboardattack">KeyBoard Attack</label>
+                </div>
+            </div>
+
+          <!-- <div class="form-floating">
+            <input formControlName type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div> -->
+
+          <button [disabled]="this.checkForm() || !this.usuario || this.respondida" class="w-100 btn btn-lg btn-primary" type="submit">Enviar</button>
+          <span>EY: {{this.formulario.errors}}</span>
+        </form>
+      </main>
+</div>

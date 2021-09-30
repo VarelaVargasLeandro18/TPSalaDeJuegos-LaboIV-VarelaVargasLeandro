@@ -5,6 +5,7 @@ import { JuegosComponent } from './juegos.component';
 import { KeyboardattackComponent } from './components/keyboardattack/keyboardattack.component';
 import { MayorYmenorComponent } from './components/mayor-ymenor/mayor-ymenor.component';
 import { PreguntadosComponent } from './components/preguntados/preguntados.component';
+import { EncuestaComponent } from 'src/app/components/encuesta/encuesta.component';
 
 const routes: Routes = [
   { path: '', component: JuegosComponent },

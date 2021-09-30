@@ -26,8 +26,7 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private usuarioService : UsuarioService,
-    private usuarioBackend : UsuarioDAOService,
-    private afAuth : AngularFireAuth
+    private usuarioBackend : UsuarioDAOService
   ) { }
 
   ngOnInit(): void {
