@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PuntajesService } from '../../services/puntajes.service';
 import { TecladoService } from '../../services/teclado.service';
 import { VidaService } from '../../services/vida.service';
 
@@ -12,7 +13,10 @@ import { VidaService } from '../../services/vida.service';
   styleUrls: ['./ahorcado.component.css']
 })
 export class AhorcadoComponent implements OnInit {
+  private readonly id : number = 0;
   readonly maxVidas : number = 10;
+  
+  @Input() usuario? : string;
 
   palabras : string[] = [
     "hola", "piedra", "zapato", "auto", "documento", "manivela", "desnivel", "redondel", "alcaucil", "noviembre", "desastre",
@@ -23,6 +27,7 @@ export class AhorcadoComponent implements OnInit {
   vidas : number = this.maxVidas;
   resultado : string = "";
   perdio : boolean = false;
+  puntos : number = 0;
 
   resultadosVictoria : string[] = [
     "VAMO NEWELL'S",
@@ -39,7 +44,8 @@ export class AhorcadoComponent implements OnInit {
 
   constructor(
     private vidaService : VidaService,
-    private tecladoService : TecladoService
+    private tecladoService : TecladoService,
+    private puntajesService : PuntajesService
   ) { }
 
   ngOnInit(): void {
@@ -117,6 +123,7 @@ export class AhorcadoComponent implements OnInit {
     this.perdio = false;
     this.reiniciarPalabra();
     this.bloquearTeclado();
+    this.puntos++;
   }
   
   private pierde () {
@@ -125,6 +132,7 @@ export class AhorcadoComponent implements OnInit {
     this.perdio = true;
     this.reiniciarPalabra();
     this.bloquearTeclado();
+    this.puntajesService.addPuntaje( this.id, this.puntos );
   }
 
   private reiniciarPalabra() {

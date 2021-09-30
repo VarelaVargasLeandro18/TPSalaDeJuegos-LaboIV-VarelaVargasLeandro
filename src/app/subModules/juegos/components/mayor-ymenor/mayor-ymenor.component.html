@@ -1,31 +1,39 @@
 <div class="wrapper">
-    <div id="puntos-wrapper" class="text-center mx-auto bg-dark px-4">
-        <span class="align-start text-success" >Puntos: {{puntos}}</span>
+    <div id="puntos-wrapper" class="text-center row bg-dark">
+        <span class="align-start text-success" >Vidas: {{this.vidas}}</span>
+        <span class="align-start text-success" >Puntos: {{this.puntos}}</span>
     </div>
     
     <div id="mazo-wrapper" class="my-3">
         <div class="mazo mx-auto">{{actual}}</div>
     </div>
 
-    <div class="text-center mx-auto bg-dark px-4">
-        <span class="align-start text-success">Actual</span>
-        <button 
-            (click)="elige(false)" 
-            class="custom-btn btn mx-2" 
-            data-bs-toggle="tooltip" 
-            data-bs-placement="top" 
-            title="MAYOR">
-            <i class="i align-middle h1 text-success fas fa-angle-left"></i>
-        </button>
-        <span class="align-start text-success">Siguiente</span>
-        <button 
-            (click)="elige(true)" 
-            class="custom-btn btn mx-2" 
-            data-bs-toggle="tooltip"
-            data-bs-placement="top" 
-            title="MENOR">
-            <i class="i align-middle h1 text-success fas fa-angle-right"></i>
-        </button>
-        <span class="align-start text-success">Actual</span>
+    <div class="text-centerrow mx-auto bg-dark px-4">
+        <div class="col-12">
+            <span class="align-start text-success">Actual</span>
+            <button
+                [disabled]="this.perdio"
+                (click)="elige(false)"
+                class="custom-btn btn mx-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="MAYOR">
+                <i class="i align-middle h1 text-success fas fa-angle-left"></i>
+            </button>
+            <span class="align-start text-success">Siguiente</span>
+            <button
+                [disabled]="this.perdio"
+                (click)="elige(true)"
+                class="custom-btn btn mx-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="MENOR">
+                <i class="i align-middle h1 text-success fas fa-angle-right"></i>
+            </button>
+            <span class="align-start text-success">Actual</span>
+        </div>
+    </div>
+    <div *ngIf="perdio" class="row text-center my-1">
+        <button (click)="this.reset()" class="btn btn-success">Jugar de Nuevo</button>
     </div>
 </div>

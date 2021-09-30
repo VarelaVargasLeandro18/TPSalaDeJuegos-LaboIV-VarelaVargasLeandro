@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { APIService } from '../../services/apiservice.service';
 import { Juego } from '../../services/juego';
+import { PuntajesService } from '../../services/puntajes.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -8,8 +9,12 @@ import { Juego } from '../../services/juego';
   styleUrls: ['./preguntados.component.css']
 })
 export class PreguntadosComponent implements OnInit {
+  private readonly id : number = 5;
 
   private readonly cantMax : number = 4;
+  private readonly vidasMax : number = 5;
+
+  @Input() usuario? : string;
   
   respuestaEs? : string;
   juegosActuales : Juego[] = [];
@@ -18,9 +23,13 @@ export class PreguntadosComponent implements OnInit {
   deshabilitarRespuestas : boolean = true;
   incorrecto : boolean = true;
   mostrarCarga : boolean = true;
+  vidas : number = this.vidasMax;
+  puntos : number = 0;
+  perdio : boolean = false;
 
   constructor(
-    private api : APIService
+    private api : APIService,
+    private puntajesService : PuntajesService
   ) { }
 
   async ngOnInit() {
@@ -41,9 +50,11 @@ export class PreguntadosComponent implements OnInit {
   }
 
   async realizarPregunta() {
+    this.mostrarCarga = true;
   
     try {
       await this.seleccionarJuegos();
+      this.mostrarCarga = false;
     } catch( error ) {
       await this.realizarPregunta()
       return  
@@ -52,6 +63,13 @@ export class PreguntadosComponent implements OnInit {
     this.deshabilitarBoton = true;
     this.respuestaEs = undefined;
     this.deshabilitarRespuestas = false;
+
+    if ( this.perdio ) {
+      this.vidas = this.vidasMax;
+      this.perdio = false;
+    }
+
+
   }
 
   contestarPregunta( nombre : string ) {
@@ -62,15 +80,22 @@ export class PreguntadosComponent implements OnInit {
       this.respuestaEs = "CORRECTO!!";
       this.incorrecto = false;
       this.deshabilitarBoton = false;
+      this.juegoSeleccionado = undefined;
+      this.puntos++;
       return
     }
 
     this.respuestaEs = "INCORRECTO!!";
     this.incorrecto = true;
     this.deshabilitarBoton = false;
-
+    this.juegoSeleccionado = undefined;
+    this.vidas--;
+    this.checkPierde();
   }
 
-
+  private checkPierde() {
+    if ( this.vidas > 0 ) return
+    this.puntajesService.addPuntaje( this.id, this.puntos );
+  }
 
 }

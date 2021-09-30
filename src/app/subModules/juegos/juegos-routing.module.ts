@@ -7,7 +7,7 @@ import { MayorYmenorComponent } from './components/mayor-ymenor/mayor-ymenor.com
 import { PreguntadosComponent } from './components/preguntados/preguntados.component';
 
 const routes: Routes = [
-  { path:'', component: JuegosComponent },
+  { path: '', component: JuegosComponent },
   { path: 'ahorcado', component: AhorcadoComponent },
   { path: 'mayor-menor', component: MayorYmenorComponent },
   { path: 'keyboard-attack', component: KeyboardattackComponent },

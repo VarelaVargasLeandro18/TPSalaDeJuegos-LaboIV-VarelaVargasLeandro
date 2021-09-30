@@ -1,4 +1,9 @@
-<div id="wrapper" class="text-center">
+<div *ngIf="!this.usuario" class="text-center">
+    <h1 class="text-danger">No iniciaste Sesion!!</h1>
+    <a href="" class="btn btn-danger" routerLink="/log-in">Iniciar Sesion</a>
+</div>
+
+<div *ngIf="this.usuario" id="wrapper" class="text-center">
     <div class="container">
 
         <div class="row justify-content-between">
@@ -10,7 +15,7 @@
                 <a class="text-decoration-none" routerLink="ahorcado">
                 
                     <div class="card-box">
-                        <h3><span href="#" class="mt-2 text-danger">Ahorcado</span></h3>
+                        <h3><span class="mt-2 text-danger">Ahorcado</span></h3>
                         <div class="card-thumbnail">
                             <img src="/assets/Ahorcado-preview.png" class="img-fluid" alt="AHORCADO">
                         </div>
@@ -26,7 +31,7 @@
                 <a class="text-decoration-none" routerLink="mayor-menor">
                     
                     <div class="card-box">
-                        <h3><span href="#" class="mt-2 text-danger">Mayor Y Menor</span></h3>
+                        <h3><span class="mt-2 text-danger">Mayor Y Menor</span></h3>
                         <div class="card-thumbnail">
                             <img src="/assets/MayorYMenor-preview.png" class="img-fluid" alt="MAYOR Y MENOR">
                         </div>
@@ -43,7 +48,7 @@
                 <a class="text-decoration-none" routerLink="keyboard-attack">
                     
                     <div class="card-box">
-                        <h3><span href="#" class="mt-2 text-danger">Keyboard Attack</span></h3>
+                        <h3><span class="mt-2 text-danger">Keyboard Attack</span></h3>
                         <div class="card-thumbnail">
                             <img src="/assets/KeyboarAttack-preview.png" class="img-fluid" alt="MAYOR Y MENOR">
                         </div>
@@ -59,7 +64,7 @@
                 <a class="text-decoration-none" routerLink="preguntados">
                     
                     <div class="card-box">
-                        <h3><span href="#" class="mt-2 text-danger">Preguntados</span></h3>
+                        <h3><span class="mt-2 text-danger">Preguntados</span></h3>
                         <div class="card-thumbnail">
                             <img src="/assets/Preguntados-preview.png" class="img-fluid" alt="MAYOR Y MENOR">
                         </div>

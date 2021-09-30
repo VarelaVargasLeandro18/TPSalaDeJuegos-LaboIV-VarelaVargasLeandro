@@ -1,11 +1,14 @@
 <div class="wrapper">
 
     <div class="row">
-        <div class="col-6 text-center">
-            <span *ngIf = "mensaje">Vida Jugador: {{vidaJugador}}</span>
+        <div class="col-4 text-center">
+            <span *ngIf = "mensaje">Vida Jugador: {{this.vidaJugador}}</span>
         </div>
-        <div class="col-6 text-center">
-            <span *ngIf = "mensaje">Vida Oponente: {{vidaOponente}}</span>
+        <div class="col-4 text-center">
+            <span *ngIf = "mensaje">Vida Oponente: {{this.vidaOponente}}</span>
+        </div>
+        <div class="col-4 text-center">
+            <span *ngIf = "mensaje">Puntos: {{this.puntos}}</span>
         </div>
     </div>  
 

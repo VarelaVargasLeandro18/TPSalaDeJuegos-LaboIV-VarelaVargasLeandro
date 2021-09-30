@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { ChatComponent } from './components/chat/chat.component';
 import { ListaChatsComponent } from './components/lista-chats/lista-chats.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { EncuestaComponent } from './components/encuesta/encuesta.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     ErrorComponent,
     FooterComponent,
     ChatComponent,
-    ListaChatsComponent
+    ListaChatsComponent,
+    EncuestaComponent
   ],
   imports: [
     BrowserModule,

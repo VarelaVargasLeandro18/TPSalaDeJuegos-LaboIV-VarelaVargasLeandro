@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TecladoService } from 'src/app/subModules/juegos/services/teclado.service';
 
 @Component({
@@ -7,8 +7,10 @@ import { TecladoService } from 'src/app/subModules/juegos/services/teclado.servi
   styleUrls: ['./letras.component.css']
 })
 export class LetrasComponent implements OnInit {
+  private readonly id : number = 2;
 
   @Output() letra : EventEmitter<string> = new EventEmitter<string>();
+  @Input() usuario? : string;
 
   letras : string[][] = [
     ['q','w','e','r','t','y','u','i','o','p'],

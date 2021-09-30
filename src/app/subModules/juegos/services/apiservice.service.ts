@@ -48,8 +48,6 @@ export class APIService {
         juego.nombre = randomResult.name;
         juego.imagenURL = randomResult.background_image;
 
-        console.log(juego.nombre);
-
       } while( juegos.findIndex( (juegoArr) => juego.nombre === juegoArr.nombre ) !== -1 );
 
 

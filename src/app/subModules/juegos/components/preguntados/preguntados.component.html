@@ -1,27 +1,30 @@
-<div class="w-100 text-center">
-    <img src="" alt="" class="img-fluid">
-</div>
-
-<div class="w-100">
-    <div *ngIf="this.juegoSeleccionado" class="text-center"><img style="width: 25%;" class="img-fluid" [attr.src]="this.juegoSeleccionado?.imagenURL" alt="Imagen del Juego"></div>
-</div>
-
-<div *ngIf="this.juegosActuales"  class="container">
-    <div *ngFor="let juego of this.juegosActuales" class="row">
-        <div class="col-12 text-center">
-            <button [disabled]="this.deshabilitarRespuestas" (click)="contestarPregunta(juego.nombre)" class="btn btn-primary my-1">{{juego.nombre}}</button>
+<div class="my-5">
+    <div class="w-25 mx-auto text-center bg-dark text-light">
+        <span>Vidas: {{this.vidas}}</span>
+        <br>
+        <span>Puntos: {{this.puntos}}</span>
+    </div>
+    
+    <div class="w-100">
+        <div *ngIf="this.juegoSeleccionado" class="text-center"><img style="width: 25%;" class="img-fluid" [attr.src]="this.juegoSeleccionado?.imagenURL" alt="Imagen del Juego"></div>
+    </div>
+    <div *ngIf="mostrarCarga" class="w-100 text-center">
+        <object data="/assets/cargando.svg" type="image/svg+xml"></object>
+    </div>
+    
+    <div *ngIf="this.juegosActuales"  class="container">
+        <div *ngFor="let juego of this.juegosActuales" class="row">
+            <div class="col-12 text-center">
+                <button [disabled]="this.deshabilitarRespuestas" (click)="contestarPregunta(juego.nombre)" class="btn btn-primary my-1">{{juego.nombre}}</button>
+            </div>
         </div>
     </div>
-</div>
-
-<div *ngIf="this.respuestaEs" class="w-100 text-center">
-    <span class="bg-dark" [ngClass]="{'text-success': !incorrecto, 'text-danger': incorrecto}">{{respuestaEs}}</span>
-</div>
-
-<div class="w-100 text-center">
-    <button *ngIf="!deshabilitarBoton" (click)="realizarPregunta()" class="btn btn-warning">Preguntame de nuevo!</button>
-</div>
-
-<div *ngIf="mostrarCarga" class="w-100 text-center">
-    <object data="/assets/cargando.svg" type="image/svg+xml"></object>
+    
+    <div *ngIf="this.respuestaEs" class="w-100 text-center">
+        <span class="bg-dark" [ngClass]="{'text-success': !incorrecto, 'text-danger': incorrecto}">{{respuestaEs}}</span>
+    </div>
+    
+    <div class="w-100 text-center">
+        <button *ngIf="!deshabilitarBoton" (click)="realizarPregunta()" class="btn btn-warning">Preguntame de nuevo!</button>
+    </div>
 </div>

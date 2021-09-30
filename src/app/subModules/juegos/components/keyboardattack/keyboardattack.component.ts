@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { PuntajesService } from '../../services/puntajes.service';
 import { TecladoService } from '../../services/teclado.service';
 
 @Component({
@@ -8,11 +9,15 @@ import { TecladoService } from '../../services/teclado.service';
   styleUrls: ['./keyboardattack.component.css']
 })
 export class KeyboardattackComponent implements OnInit {
+  private readonly id : number = 1;
 
   private readonly mensajeIniciar : string = "Inicie el juego!";
   private readonly mensajePerdio : string = "Perdio!";
   private readonly mensajeGano : string = "Felicitaciones!";
+
+  @Input() usuario? : string;
   
+  puntos : number = 0;
   letraActual : string = "";
   jugando : boolean = false;
   mensaje : string = "";
@@ -31,7 +36,8 @@ export class KeyboardattackComponent implements OnInit {
 
   
   constructor(
-    private tecladoService : TecladoService
+    private tecladoService : TecladoService,
+    private puntajesService : PuntajesService
   ) { }
 
   ngOnInit(): void {
@@ -137,7 +143,9 @@ export class KeyboardattackComponent implements OnInit {
       this.reiniciarVidaJugador();
       this.reiniciarTiempoATranscurrir();
       this.terminarCarga();
+      this.puntajesService.addPuntaje( this.id, this.puntos );
       this.jugando = false;
+      this.bloquearTeclado();
       return
     }
     
@@ -151,6 +159,7 @@ export class KeyboardattackComponent implements OnInit {
     this.terminarCarga();
 
     if( this.vidaOponente === 0 ) {
+      this.puntos++;
       this.setMensajeGana();
       this.reiniciarVidaJugador();
       this.reiniciarVidaOponente();

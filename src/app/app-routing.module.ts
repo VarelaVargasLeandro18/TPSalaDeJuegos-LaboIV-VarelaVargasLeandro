@@ -11,8 +11,8 @@ const routes: Routes = [
   {path: 'who-am-i', component: WhoAmIComponent},
   {path: 'sign-up', component: SignupComponent},
   {path: 'chat', component: ChatComponent},
-  { path: 'home', loadChildren: () => import('./subModules/juegos/juegos.module').then(m => m.JuegosModule) },
-
+  {path: 'home', loadChildren: () => import('./subModules/juegos/juegos.module').then(m => m.JuegosModule) },
+  {path: '', redirectTo:'/home', pathMatch:'full' },
   {path: '**', component: ErrorComponent}
 ];
 
