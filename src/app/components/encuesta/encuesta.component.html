@@ -1,7 +1,6 @@
-<div class="text-center">
+<div style="margin-top: 2.3rem;" class="text-center">
     <main class="form-signin">
         <form [formGroup]="this.formulario" (ngSubmit)="onSubmit()">
-          <h1 class="h3 mb-3 fw-normal">Por favor responda esta breve encuesta</h1>
           
           <div class="form-floating">
             <input formControlName="nombre" type="text" class="form-control" id="nombre">
@@ -68,7 +67,6 @@
           </div> -->
 
           <button [disabled]="this.checkForm() || !this.usuario || this.respondida" class="w-100 btn btn-lg btn-primary" type="submit">Enviar</button>
-          <span>EY: {{this.formulario.errors}}</span>
         </form>
       </main>
 </div>
