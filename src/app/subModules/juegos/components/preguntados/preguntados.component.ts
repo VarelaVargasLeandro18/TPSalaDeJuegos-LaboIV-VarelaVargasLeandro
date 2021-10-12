@@ -9,7 +9,7 @@ import { PuntajesService } from '../../services/puntajes.service';
   styleUrls: ['./preguntados.component.css']
 })
 export class PreguntadosComponent implements OnInit {
-  private readonly id : number = 5;
+  private readonly id : number = 2;
 
   private readonly cantMax : number = 4;
   private readonly vidasMax : number = 5;

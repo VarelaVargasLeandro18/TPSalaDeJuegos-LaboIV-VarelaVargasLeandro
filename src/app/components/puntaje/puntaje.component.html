@@ -1,0 +1,50 @@
+<div class="row w-100 text-center">
+    <h1>Puntajes!</h1>
+    <div class="d-flex column justify-content-between w-100 border border-1 border-dark">
+        <div class="card ahorcado">
+            <div class="card-body scroll">
+                <h5 class="card-title">Ahorcado</h5>
+                <ul>
+                    <li *ngFor="let puntaje of this.ahorcado">
+                        <span>Fecha: {{puntaje.fechaHora.toDate() | date}} </span>
+                        <span>Puntaje: {{puntaje.puntaje}}</span>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="card keyboardAttack">
+            <div class="card-body scroll">
+                <h5 class="card-title">Keyboard Attack</h5>
+                <ul>
+                    <li *ngFor="let puntaje of this.keyboardAttack">
+                        <span>Fecha: {{puntaje.fechaHora.toDate() | date}} </span>
+                        <span>Puntaje: {{puntaje.puntaje}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card mayorYmenor">
+            <div class="card-body scroll">
+                <h5 class="card-title">Mayor y Menor</h5>
+                <ul>
+                    <li *ngFor="let puntaje of this.mayorYmenor">
+                        <span>Fecha: {{puntaje.fechaHora.toDate() | date}} </span>
+                        <span>Puntaje: {{puntaje.puntaje}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card preguntados">
+            <div class="card-body scroll">
+                <h5 class="card-title">Preguntados</h5>
+                <ul>
+                    <li *ngFor="let puntaje of this.preguntados">
+                        <span>Fecha: {{puntaje.fechaHora.toDate() | date}} </span>
+                        <span>Puntaje: {{puntaje.puntaje}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

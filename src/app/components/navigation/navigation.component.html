@@ -10,6 +10,7 @@
       <a class="nav-link rounded border border-black" routerLink="who-am-i">Quién soy</a>
       <a *ngIf="usuario" class="nav-link rounded border border-black" routerLink="chat">Chat</a>
       <a *ngIf="usuario" class="nav-link rounded border border-black" routerLink="encuesta">Encuesta</a>
+      <a *ngIf="usuario" class="nav-link rounded border border-black" routerLink="puntaje">Puntajes</a>
       <button *ngIf="usuario" (click)="onLogOut()" class="btn btn-lg btn-danger" > <i class="fas fa-sign-out-alt"></i> Log Out</button>
     </nav>
 </header>

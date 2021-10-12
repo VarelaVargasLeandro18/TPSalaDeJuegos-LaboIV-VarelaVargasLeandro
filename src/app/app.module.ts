@@ -17,6 +17,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ListaChatsComponent } from './components/lista-chats/lista-chats.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { EncuestaComponent } from './components/encuesta/encuesta.component';
+import { PuntajeComponent } from './components/puntaje/puntaje.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { EncuestaComponent } from './components/encuesta/encuesta.component';
     FooterComponent,
     ChatComponent,
     ListaChatsComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    PuntajeComponent
   ],
   imports: [
     BrowserModule,
